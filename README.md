@@ -1,2 +1,3 @@
-# github-actions-course-template
-project repo for getting started with Github actions
+# Tic Tac Toe Game
+
+Learn GitHub Actions through a fun little game.
