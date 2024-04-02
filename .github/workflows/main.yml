@@ -1,0 +1,59 @@
+name: Maven Build, Test, and deploy
+on:
+  push:
+    branches:
+      - main
+ 
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+ 
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'  
+          distribution: 'adopt'  
+ 
+      - name: Build with Maven
+        run: mvn clean install
+ 
+ 
+ 
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+ 
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'  
+          distribution: 'adopt'  
+      - name: Run Tests with Maven
+        run: mvn test
+ 
+ 
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    needs: [build, test]
+ 
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+ 
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'  
+          distribution: 'adopt'  
+ 
+      
